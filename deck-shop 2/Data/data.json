@@ -3,79 +3,79 @@
         {
             "name": "MATRIX 1999 DECK",
             "price": 3000,
-            "image": "/assets/images/matrix-1999-1.jpg"
+            "image": "/deck-shop 2/assets/images/matrix-1999-1.jpg"
         },
 
         {
             "name": "RAEDA DECK",
             "price": 200,
-            "image": "/assets/images/Raeda-Deck.jpg"
+            "image": "/deck-shop 2/assets/images/Raeda-Deck.jpg"
         },
 
         {
             "name": "MUSTY DECK",
             "price": 1000,
-            "image": "/assets/images/Musty-Deck.jpg"
+            "image": "/deck-shop 2/assets/images/Musty-Deck.jpg"
         },
 
         {
             "name": "TRISTIQUE DECK",
             "price": 9000,
-            "image": "/assets/images/Tristique-deck.jpg"
+            "image": "/deck-shop 2/assets/images/Tristique-deck.jpg"
         },
 
         {
             "name": "FIELD TRIP DECK",
             "price": 30000,
-            "image": "/assets/images/Fied-Trip-deck.jpg"
+            "image": "/deck-shop 2/assets/images/Fied-Trip-deck.jpg"
         },
 
         {
             "name": "TARO RAINBOW LOGO DECK",
             "price": 12000,
-            "image": "/assets/images/web-5.jpg"
+            "image": "/deck-shop 2/assets/images/web-5.jpg"
         },
 
         {
             "name": "NEON RAINBOW LOGO DECK",
             "price": 12000,
-            "image": "/assets/images/web-1.jpg"
+            "image": "/deck-shop 2/assets/images/web-1.jpg"
         },
 
         {
             "name": "ORANAGE RAINBOW LOGO DECK",
             "price": 12000,
-            "image": "/assets/images/web-2.jpg"
+            "image": "/deck-shop 2/assets/images/web-2.jpg"
         },
 
         {
             "name": "BLUE RAINBOW LOGO DECK",
             "price": 12000,
-            "image": "/assets/images/web-3.jpg"
+            "image": "/deck-shop 2/assets/images/web-3.jpg"
         },
 
         {
             "name": "WHITE RAINBOW LOGO DECK",
             "price": 12000,
-            "image": "/assets/images/web-4.jpg"
+            "image": "/deck-shop 2/assets/images/web-4.jpg"
         },
 
         {
             "name": "CUTIS MODEL DECK",
             "price": 45666,
-            "image": "/assets/images/cutis.jpg"
+            "image": "/deck-shop 2/assets/images/cutis.jpg"
         },
 
         {
             "name": "CAM VU MODEL DECK",
             "price": 12333,
-            "image": "/assets/images/cam-vu.jpg"
+            "image": "/deck-shop 2/assets/images/cam-vu.jpg"
         },
 
         {
             "name": "SON NGUYEN MODEL DECK",
             "price": 15666,
-            "image": "/assets/images/son-nguyen.jpg"
+            "image": "/deck-shop 2/assets/images/son-nguyen.jpg"
         }
     ]
 }
