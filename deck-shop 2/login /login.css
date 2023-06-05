@@ -8,8 +8,9 @@
   .content{
       max-width: 400px;
       margin: 0 auto;
-      padding-top: 5%;
-    }
+      padding-top: 15%;
+
+  }
   
     .form-group {
       margin-bottom: 15px;
@@ -34,8 +35,9 @@
       color: red;
     }
   body{
-      background-color: #fbda34;
-      font-family: 'Courier New', Courier, monospace
+    background: linear-gradient(#9120e7, #5b08d0);
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
   }
   .register{
     padding: 10px;
@@ -53,5 +55,5 @@
     text-align: center;
   }
   .pic{
-    padding-top: 10%;
+    padding-top: 15%;
   }

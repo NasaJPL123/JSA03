@@ -53,7 +53,7 @@ function validateForm() {
       };
       localStorage.setItem('userData', JSON.stringify(userData));
   
-      window.location.href = '/login/login.html';
+      window.location.href = '/deck-shop 2/login /login.html';
     }
   }
   

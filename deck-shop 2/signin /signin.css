@@ -34,8 +34,9 @@
     color: red;
   }
 body{
-    background-color: #fbda34;
-    font-family: 'Courier New', Courier, monospace
+  background: linear-gradient(#9120e7, #5b08d0);
+  font-family: 'Courier New', Courier, monospace;
+  height: 100vh;
 }
 .register{
   padding: 10px;
@@ -53,5 +54,5 @@ body{
   text-align: center;
 }
 .pic{
-  padding-top: 10%;
+  padding-top: 20%;
 }
