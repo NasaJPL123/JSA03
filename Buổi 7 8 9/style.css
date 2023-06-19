@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#insert {
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+}
+#form_input{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    background-color: #526D82;
+    padding: 10px
+}
+input {
+    width: 70%;
+    height: 45px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+input:focus {
+    outline: none;
+}
