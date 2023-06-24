@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 #insert {
-    width: 150px;
+    padding-left: 30%;
+    padding-right: 30%;
     height: 35px;
     border: none;
     border-radius: 10px;
@@ -12,11 +13,11 @@
 #form_input{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 100%;
     justify-content: center;
-    align-items: center;
-    background-color: #526D82;
-    padding: 10px
+    padding-top: 15%;
+    padding-left: 30%;
+    padding-right: 30%;
 }
 input {
     width: 70%;
@@ -30,4 +31,9 @@ input {
 
 input:focus {
     outline: none;
+}
+body {
+    background: linear-gradient(#9120e7, #5b08d0);
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
 }
