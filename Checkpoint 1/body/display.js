@@ -1,7 +1,11 @@
 import { jsonData } from './data.js';
-console.log(jsonData)
-  var tableBody = document.getElementById("data-table").getElementsByTagName('tbody')[0];
-  
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+console.log(jsonData);
+
+var tableBody = document.getElementById("data-table").getElementsByTagName('tbody')[0];
+
+function populateTable() {
   for (var i = 0; i < jsonData.length; i++) {
     var row = tableBody.insertRow(i);
 
@@ -18,56 +22,169 @@ console.log(jsonData)
     companyCell.textContent = jsonData[i].Company;
 
     var roleCell = row.insertCell(4);
-    roleCell.textContent = jsonData[i].Role
+    roleCell.textContent = jsonData[i].Role;
 
     var fluffleCell = row.insertCell(5);
     fluffleCell.textContent = jsonData[i].FluffleName;
 
     var customersCell = row.insertCell(6);
     customersCell.textContent = jsonData[i].Customers;
-  }
 
-  function updateTable(filteredData) {
-  var tableBody = document.getElementById("data-table").getElementsByTagName('tbody')[0];
-  tableBody.innerHTML = ""; 
+    var actionsCell = row.insertCell(7);
 
-  for (var i = 0; i < filteredData.length; i++) {
-    var row = tableBody.insertRow(i);
-    var idCell = row.insertCell(0);
-    idCell.textContent = filteredData[i].ID;
+    var adjustButton = document.createElement("button");
+    adjustButton.classList.add("adjust-btn");
+    adjustButton.addEventListener("click", adjustInformation);
 
-    var nameCell = row.insertCell(1);
-    nameCell.textContent = filteredData[i].AdvisorName;
+    var adjustImg = document.createElement("img");
+    adjustImg.src = "/Checkpoint 1/assets/PencilLine.svg";
+    adjustButton.appendChild(adjustImg);
 
-    var emailCell = row.insertCell(2);
-    emailCell.textContent = filteredData[i].Email;
+    var deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.addEventListener("click", deleteRow);
 
-    var companyCell = row.insertCell(3);
-    companyCell.textContent = filteredData[i].Company;
+    var deleteImg = document.createElement("img");
+    deleteImg.src = "/Checkpoint 1/assets/Trash.svg";
+    deleteButton.appendChild(deleteImg);
 
-    var roleCell = row.insertCell(4);
-    roleCell.textContent = filteredData[i].Role;
+    var confirmButton = document.createElement("button");
+    confirmButton.classList.add("confirm-btn");
+    confirmButton.style.display = "none";
+    confirmButton.addEventListener("click", confirmChanges);
 
-    var fluffleCell = row.insertCell(5);
-    fluffleCell.textContent = filteredData[i].FluffleName;
+    var confirmImg = document.createElement("img");
+    confirmImg.src = "/Checkpoint 1/assets/Eye (1).svg";
+    confirmButton.appendChild(confirmImg);
 
-    var customersCell = row.insertCell(6);
-    customersCell.textContent = filteredData[i].Customers;
+    actionsCell.appendChild(adjustButton);
+    actionsCell.appendChild(deleteButton);
+    actionsCell.appendChild(confirmButton);
   }
 }
-var searchInput = document.querySelector('.search-bar input[type="text"]');
-searchInput.addEventListener('input', function(event) {
-  var searchTerm = event.target.value.toLowerCase();
 
-  var filteredData = jsonData.filter(function(item) {
-    return (
-      item.AdvisorName.toLowerCase().includes(searchTerm) ||
-      item.Email.toLowerCase().includes(searchTerm) ||
-      item.Company.toLowerCase().includes(searchTerm) ||
-      item.Role.toLowerCase().includes(searchTerm) ||
-      item.FluffleName.toLowerCase().includes(searchTerm)
-    );
-  });
+function adjustInformation(event) {
+  var row = event.target.parentNode.parentNode;
+  var adjustButton = row.querySelector(".adjust-btn");
+  var deleteButton = row.querySelector(".delete-btn");
+  var confirmButton = row.querySelector(".confirm-btn");
 
-  updateTable(filteredData);
-});
+  if (row.classList.contains("editing")) {
+    return; // Prevent editing if already in editing state
+  }
+
+  adjustButton.style.display = "none";
+  deleteButton.style.display = "none";
+  confirmButton.style.display = "inline-block";
+
+  for (var i = 0; i < row.cells.length - 1; i++) {
+    var cell = row.cells[i];
+    var cellContent = cell.textContent;
+    cell.innerHTML = "<input type='text' value='" + cellContent + "' />";
+  }
+
+  row.classList.add("editing");
+
+  // Remove event listeners from adjustButton and deleteButton
+  adjustButton.removeEventListener("click", adjustInformation);
+  deleteButton.removeEventListener("click", deleteRow);
+
+  // Add event listener to confirmButton
+  confirmButton.addEventListener("click", confirmChanges);
+}
+
+function deleteRow(event) {
+  var row = event.target.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+
+function confirmChanges(event) {
+  var row = event.target.parentNode.parentNode;
+  var adjustButton = row.querySelector(".adjust-btn");
+  var deleteButton = row.querySelector(".delete-btn");
+  var confirmButton = row.querySelector(".confirm-btn");
+
+  adjustButton.style.display = "inline-block";
+  deleteButton.style.display = "inline-block";
+  confirmButton.style.display = "none";
+
+  for (var i = 0; i < row.cells.length - 1; i++) {
+    var cell = row.cells[i];
+    var input = cell.querySelector("input");
+    var cellValue = input.value.trim();
+    
+    cell.removeChild(input); 
+    cell.textContent = cellValue;
+  }
+
+  adjustButton.removeEventListener("click", adjustInformation);
+  adjustButton.addEventListener("click", adjustInformation);
+  deleteButton.removeEventListener("click", deleteRow);
+  deleteButton.addEventListener("click", deleteRow);
+}
+
+function addNewRow() {
+  var newRow = tableBody.insertRow(tableBody.rows.length);
+
+  var idCell = newRow.insertCell(0);
+  idCell.innerHTML = "<input type='text' />";
+
+  var nameCell = newRow.insertCell(1);
+  nameCell.innerHTML = "<input type='text' />";
+
+  var emailCell = newRow.insertCell(2);
+  emailCell.innerHTML = "<input type='text' />";
+
+  var companyCell = newRow.insertCell(3);
+  companyCell.innerHTML = "<input type='text' />";
+
+  var roleCell = newRow.insertCell(4);
+  roleCell.innerHTML = "<input type='text' />";
+
+  var fluffleCell = newRow.insertCell(5);
+  fluffleCell.innerHTML = "<input type='text' />";
+
+  var customersCell = newRow.insertCell(6);
+  customersCell.innerHTML = "<input type='text' />";
+
+  var actionsCell = newRow.insertCell(7);
+
+  var adjustButton = document.createElement("button");
+  adjustButton.classList.add("adjust-btn");
+  adjustButton.addEventListener("click", adjustInformation);
+
+  var adjustImg = document.createElement("img");
+  adjustImg.src = "/Checkpoint 1/assets/PencilLine.svg";
+  adjustButton.appendChild(adjustImg);
+
+  var deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-btn");
+  deleteButton.addEventListener("click", deleteRow);
+
+  var deleteImg = document.createElement("img");
+  deleteImg.src = "/Checkpoint 1/assets/Trash.svg";
+  deleteButton.appendChild(deleteImg);
+
+  var confirmButton = document.createElement("button");
+  confirmButton.classList.add("confirm-btn");
+  confirmButton.style.display = "none";
+  confirmButton.addEventListener("click", confirmChanges);
+
+  var confirmImg = document.createElement("img");
+  confirmImg.src = "/Checkpoint 1/assets/Eye.svg";
+  confirmButton.appendChild(confirmImg);
+
+  actionsCell.appendChild(adjustButton);
+  actionsCell.appendChild(deleteButton);
+  actionsCell.appendChild(confirmButton);
+
+  adjustButton.removeEventListener("click", adjustInformation);
+  adjustButton.addEventListener("click", adjustInformation);
+  deleteButton.removeEventListener("click", deleteRow);
+  deleteButton.addEventListener("click", deleteRow);
+  confirmButton.removeEventListener("click", confirmChanges);
+  confirmButton.addEventListener("click", confirmChanges);
+}
+
+populateTable();
+
